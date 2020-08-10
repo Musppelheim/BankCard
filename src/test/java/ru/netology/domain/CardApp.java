@@ -47,18 +47,18 @@ public class CardApp {
     }
 
     @Test
-    void souldNotSubmitWithWrongName() {
+    void ShouldNotSubmitWithWrongName() {
         driver.get("http://localhost:9999");
-        driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Лоран сика");
+        driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Laurent Sika");
         driver.findElement(By.cssSelector("[data-test-id=phone] input ")).sendKeys("+79526007441");
         driver.findElement(By.cssSelector("span[class='checkbox__box']")).click();
         driver.findElement(By.cssSelector(".button__text")).submit();
         String text = driver.findElement(By.cssSelector(".input__sub")).getText();
-        assertEquals("Укажите точно как в паспорте", text);
+        assertEquals("Имя и Фамилия указаные неверно. Допустимы только русские буквы, пробелы и дефисы.", text);
     }
 
     @Test
-    void souldNotSubmitWithEmptyNameField() {
+    void ShouldNotSubmitWithEmptyNameField() {
         driver.get("http://localhost:9999");
         driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("");
         driver.findElement(By.cssSelector("[data-test-id=phone] input ")).sendKeys("+79526007441");
